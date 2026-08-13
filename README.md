@@ -8,7 +8,7 @@ The goal of this repository is to showcase how ChatGPT can interact with a GitHu
 
 ## Demonstration Application
 
-The repository now contains a small full-stack calculator application. It provides a concrete example of ChatGPT creating a project structure and pushing multiple files directly to GitHub.
+The repository contains a small full-stack calculator application. It provides a concrete example of ChatGPT creating a project structure and pushing multiple files directly to GitHub.
 
 The application consists of:
 
@@ -43,6 +43,83 @@ ChatGPTDemo/
 ### Frontend
 
 The `frontend` directory contains a simple interactive calculator. It collects the user's input and sends calculations to the Flask backend using the browser Fetch API.
+
+## Running the Application
+
+### Prerequisites
+
+Make sure Python 3.9+ is installed.
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Ha-an1/ChatGPTDemo.git
+cd ChatGPTDemo
+```
+
+### 2. Set up the backend
+
+From the repository root:
+
+```bash
+cd backend
+python -m venv .venv
+```
+
+Activate the virtual environment.
+
+**Windows:**
+
+```bash
+.venv\Scripts\activate
+```
+
+**macOS/Linux:**
+
+```bash
+source .venv/bin/activate
+```
+
+Install the dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Start the Flask server:
+
+```bash
+python app.py
+```
+
+The backend will run at `http://localhost:5000`.
+
+### 3. Run the frontend
+
+Keep the backend running and open a second terminal. From the repository root, start a simple static HTTP server:
+
+```bash
+cd frontend
+python -m http.server 8080
+```
+
+Then open:
+
+```text
+http://localhost:8080
+```
+
+The calculator frontend will send calculation requests to the backend running on port `5000`.
+
+### 4. Run the backend tests
+
+From the `backend` directory, run:
+
+```bash
+python -m unittest test_calculator.py -v
+```
+
+The tests cover addition, subtraction, multiplication, division, decimal calculations, division by zero, and unsupported operations.
 
 ## GitHub + ChatGPT Demonstrations
 
