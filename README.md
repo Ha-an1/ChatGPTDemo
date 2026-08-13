@@ -6,7 +6,45 @@ This repository is a demonstration of **GitHub connectivity with ChatGPT**.
 
 The goal of this repository is to showcase how ChatGPT can interact with a GitHub repository through a connected GitHub integration. Instead of only discussing code, ChatGPT can work directly with the repository and perform common development and project-management operations.
 
-## Demonstrations
+## Demonstration Application
+
+The repository now contains a small full-stack calculator application. It provides a concrete example of ChatGPT creating a project structure and pushing multiple files directly to GitHub.
+
+The application consists of:
+
+- A **Flask backend** exposing calculator operations through a REST API.
+- A **vanilla HTML/CSS/JavaScript frontend** containing an interactive calculator.
+- Communication between the frontend and backend through the `/api/calculate` endpoint.
+
+## Directory Structure
+
+```text
+ChatGPTDemo/
+├── README.md
+├── backend/
+│   ├── app.py
+│   ├── calculator.py
+│   └── requirements.txt
+└── frontend/
+    ├── index.html
+    ├── app.js
+    └── style.css
+```
+
+### Backend
+
+`backend/calculator.py` contains the basic arithmetic functions for addition, subtraction, multiplication, and division.
+
+`backend/app.py` provides the Flask API:
+
+- `GET /api/health` — health check
+- `POST /api/calculate` — perform a calculation
+
+### Frontend
+
+The `frontend` directory contains a simple interactive calculator. It collects the user's input and sends calculations to the Flask backend using the browser Fetch API.
+
+## GitHub + ChatGPT Demonstrations
 
 This repository can be used to demonstrate capabilities such as:
 
