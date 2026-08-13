@@ -14,7 +14,7 @@ The application consists of:
 
 - A **Flask backend** exposing calculator operations through a REST API.
 - A **vanilla HTML/CSS/JavaScript frontend** containing an interactive calculator.
-- Communication between the frontend and backend through the `/api/calculate` endpoint.
+- Flask serving the frontend and API from the same port, making the application straightforward to run in GitHub Codespaces.
 
 ## Directory Structure
 
@@ -35,14 +35,15 @@ ChatGPTDemo/
 
 `backend/calculator.py` contains the basic arithmetic functions for addition, subtraction, multiplication, and division.
 
-`backend/app.py` provides the Flask API:
+`backend/app.py` provides the Flask API and serves the frontend:
 
+- `GET /` — calculator frontend
 - `GET /api/health` — health check
 - `POST /api/calculate` — perform a calculation
 
 ### Frontend
 
-The `frontend` directory contains a simple interactive calculator. It collects the user's input and sends calculations to the Flask backend using the browser Fetch API.
+The `frontend` directory contains a simple interactive calculator. It collects the user's input and sends calculations to the backend using the browser Fetch API and a same-origin `/api/calculate` request.
 
 ## Running the Application
 
@@ -86,30 +87,30 @@ Install the dependencies:
 pip install -r requirements.txt
 ```
 
-Start the Flask server:
+### 3. Start the application
+
+From the `backend` directory:
 
 ```bash
 python app.py
 ```
 
-The backend will run at `http://localhost:5000`.
+Flask listens on `0.0.0.0:5000`.
 
-### 3. Run the frontend
+#### GitHub Codespaces
 
-Keep the backend running and open a second terminal. From the repository root, start a simple static HTTP server:
+If you are running this application in a GitHub Codespace, open or forward **port 5000** from the Ports panel and open the generated forwarded URL. You do **not** need to run a separate frontend server.
 
-```bash
-cd frontend
-python -m http.server 8080
-```
-
-Then open:
+The frontend and backend are served from the same Flask server:
 
 ```text
-http://localhost:8080
+Browser
+   │
+   ▼
+Port 5000
+   ├── /              → frontend
+   └── /api/calculate → calculator API
 ```
-
-The calculator frontend will send calculation requests to the backend running on port `5000`.
 
 ### 4. Run the backend tests
 
